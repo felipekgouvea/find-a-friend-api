@@ -4,15 +4,15 @@ import { z } from "zod";
 
 export async function pet(request: FastifyRequest, reply: FastifyReply) {
   const petsQuerySchema = z.object({
-    query: z.string(),
+    city: z.string(),
   })
 
-  const { query } = petsQuerySchema.parse(request.query)
+  const { city } = petsQuerySchema.parse(request.query)
 
-  const fetchPetsService = makeGetPetByCityService()
+  const getPetsByCityService = makeGetPetByCityService()
 
-  const { pets } = await fetchPetsService.execute({
-    query,
+  const { pets } = await getPetsByCityService.execute({
+    city,
   })
  
   return reply.status(200).send({
