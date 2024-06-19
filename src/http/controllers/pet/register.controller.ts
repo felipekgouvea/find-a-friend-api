@@ -1,6 +1,6 @@
 import { PrismaPetsRepository } from "@/repositories/prisma/prisma-pets-repository";
 import { PetAlreadyExistsError } from "@/services/errors/pet-already-exists-error";
-import { RegisterService } from "@/services/register-pet.service";
+import { RegisterService } from "@/services/register-pet-service";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 
