@@ -1,18 +1,18 @@
-import { makeRegisterPetService } from "@/services/factories/make-fetch-pets-service";
+import { makeGetPetByCityService } from "@/services/factories/make-fetch-pets-service";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 
 export async function pet(request: FastifyRequest, reply: FastifyReply) {
-  const petsBodySchema = z.object({
-    city: z.string(),
+  const petsQuerySchema = z.object({
+    query: z.string(),
   })
 
-  const { city } = petsBodySchema.parse(request.body)
+  const { query } = petsQuerySchema.parse(request.query)
 
-  const fetchPetsService = makeRegisterPetService()
+  const fetchPetsService = makeGetPetByCityService()
 
   const { pets } = await fetchPetsService.execute({
-    city
+    query,
   })
  
   return reply.status(200).send({
